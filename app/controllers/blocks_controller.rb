@@ -3,7 +3,7 @@ class BlocksController < ApplicationController
 
   # GET /blocks or /blocks.json
   def index
-    @blocks = Block.all
+    @blocks = Block.all.order("created_at DESC")
   end
 
   # GET /blocks/1 or /blocks/1.json
@@ -21,11 +21,22 @@ class BlocksController < ApplicationController
 
   # POST /blocks or /blocks.json
   def create
-    @block = Block.new(block_params)
+    require "httparty"
+    hash_block = params[:block][:hash_block]
+    url = "https://blockchain.info/rawblock/#{hash_block}"
+    response = HTTParty.get(url)
+    block_info = JSON.parse(response.body)
+    # hash_block = block_info["hash"]
+    prev_block = block_info["prev_block"]
+    block_index = block_info["block_index"]
+    time = block_info["time"]
+    bits = block_info["bits"]
+    # @block = Block.new(block_params)
+    @block = Block.new(hash_block:, prev_block:, block_index:, time:, bits:)
 
     respond_to do |format|
       if @block.save
-        format.html { redirect_to block_url(@block), notice: "Block was successfully created." }
+        format.html { redirect_to blocks_url, notice: "Block was successfully created." }
         format.json { render :show, status: :created, location: @block }
       else
         format.html { render :new, status: :unprocessable_entity }
