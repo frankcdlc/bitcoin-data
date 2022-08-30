@@ -36,6 +36,18 @@ class BlocksController < ApplicationController
 
     respond_to do |format|
       if @block.save
+        flash.now[:notice] = "Block was successfully created."
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.prepend("blocks",
+                                 partial: "blocks/block",
+                                locals:{block: @block}),
+            turbo_stream.update("new_block",
+                                  partial: "blocks/form",
+                                 locals:{block: Block.new}),
+            turbo_stream.update("flash", partial: "layouts/flash")
+          ]
+        end
         format.html { redirect_to blocks_url, notice: "Block was successfully created." }
         format.json { render :show, status: :created, location: @block }
       else

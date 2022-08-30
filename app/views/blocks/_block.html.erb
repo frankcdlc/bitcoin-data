@@ -1,4 +1,13 @@
 <div id="<%= dom_id block %>">
+  <div style="display:flex">
+    <p><%=block.hash_block%></p>
+    <p>
+      <button>open</button>
+      <button>close</button>
+    <p>
+    <%= button_to "DELETE", block, method: :delete %>
+  </div>
+
   <p class="my-5">
     <strong class="block font-medium mb-1">Hash block:</strong>
     <%= block.hash_block %>
@@ -24,9 +33,4 @@
     <%= block.bits %>
   </p>
 
-  <% if action_name != "show" %>
-    <%= link_to "Show this block", block, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this block', edit_block_path(block), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
 </div>

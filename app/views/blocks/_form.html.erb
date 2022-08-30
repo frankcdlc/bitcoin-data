@@ -11,12 +11,8 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :hash_block %>
-    <%= form.text_field :hash_block, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="my-5 flexblox">
+    <%= form.text_field :hash_block, class: "shadow rounded-md border border-black px-18 py-6 w-0.5", style:"width: 600px;" %>
+    <%= form.submit "ADD", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
