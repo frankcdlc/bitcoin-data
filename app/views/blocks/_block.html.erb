@@ -2,12 +2,12 @@
   <div data-controller="modal">
     <div data-controller="dropdown">
       <div style= "display: flex" style="align-items:center">
-        <p style= "border: 2px solid black; width: 630px" class="rounded-md"><%= block.hash_block %></p>
+        <p style= "border: 1px solid black; width: 630px" class="rounded-md"><%= block.hash_block %></p>
         <p>
-          <button data-action="click->dropdown#openDropdown" data-dropdown-target="openButton" style="height:30px; border:2px solid black" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold rounded-md">
+          <button data-action="click->dropdown#openDropdown" data-dropdown-target="openButton" style="height:30px; border:1px solid black" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold rounded-md">
             <%= image_tag("down-arrow.png", :width => 20, :height => 20) %>
           </button>
-          <button data-action="click->dropdown#closeDropdown" data-dropdown-target="closeButton" style="height:30px; border: 2px solid black" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold rounded-md">
+          <button data-action="click->dropdown#closeDropdown" data-dropdown-target="closeButton" style="height:30px; border: 1px solid black" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold rounded-md">
             <%= image_tag("up-arrow.png", :width => 20, :height => 20) %>
           </button>
         </p>
