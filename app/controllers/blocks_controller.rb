@@ -3,7 +3,7 @@ class BlocksController < ApplicationController
 
   # GET /blocks or /blocks.json
   def index
-    @blocks = Block.all.order("created_at DESC")
+    @pagy, @blocks = pagy(Block.all.order("created_at DESC"), items: 4)
   end
 
   # GET /blocks/1 or /blocks/1.json

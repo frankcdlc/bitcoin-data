@@ -77,3 +77,5 @@ end
 gem "tailwindcss-rails", "~> 2.0"
 
 gem 'httparty'
+
+gem 'pagy', '~> 5.10', '>= 5.10.1'
