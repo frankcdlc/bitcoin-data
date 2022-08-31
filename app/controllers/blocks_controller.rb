@@ -75,6 +75,12 @@ class BlocksController < ApplicationController
     @block.destroy
 
     respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.remove(@block),
+          turbo_stream.update("notice", "Block was succesfully destroyed")
+        ]
+      end
       format.html { redirect_to blocks_url, notice: "Block was successfully destroyed." }
       format.json { head :no_content }
     end
