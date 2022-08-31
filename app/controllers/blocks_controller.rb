@@ -51,6 +51,10 @@ class BlocksController < ApplicationController
         format.html { redirect_to blocks_url, notice: "Block was successfully created." }
         format.json { render :show, status: :created, location: @block }
       else
+        format.turbo_stream do
+          render turbo_stream:
+            turbo_stream.update("new_block", partial: "blocks/form", locals: {block: @block})
+        end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @block.errors, status: :unprocessable_entity }
       end
