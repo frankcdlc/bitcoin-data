@@ -77,12 +77,12 @@ class BlocksController < ApplicationController
   # DELETE /blocks/1 or /blocks/1.json
   def destroy
     @block.destroy
-
+    flash.now[:notice] = "Block was successfully destroyed."
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@block),
-          turbo_stream.update("notice", "Block was succesfully destroyed")
+          turbo_stream.update("flashdestroy", partial: "layouts/flashdestroy" )
         ]
       end
       format.html { redirect_to blocks_url, notice: "Block was successfully destroyed." }
